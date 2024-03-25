@@ -1,0 +1,10 @@
+﻿{
+  "Name": "SyncMultiLevel",
+  "Author": "thriic",
+  "Version": "1.0.0",
+  "Description": "test",
+  "UniqueID": "thriic.SyncMultiLevel",
+  "EntryDll": "SyncMultiLevel.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": []
+}
