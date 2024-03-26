@@ -18,8 +18,8 @@ namespace SyncMultiLevel
         public override void Entry(IModHelper helper)
         {
             helper.Events.GameLoop.OneSecondUpdateTicked += GameLoop_OneSecondUpdateTicked;
-            helper.ConsoleCommands.Add("add_exp", $"skill_level [SkillID] [Exp] [PlayerName]\ne.g. add_exp 1 1000\n  give 1000exp to LocalPlayer on Fishing\n{HelpText}", ExpCommand);
-            helper.ConsoleCommands.Add("set_level", $"skill_level [SkillID] [Level] [PlayerName]\ne.g. set_level 0 4\n  set LocalPlayer's Farming Level to 4\n{HelpText}", LevelCommand);
+            helper.ConsoleCommands.Add("add_exp", $"add_exp [SkillID] [Exp] [PlayerName]\ne.g. add_exp 1 1000\n  give 1000exp to LocalPlayer on Fishing\n{HelpText}", ExpCommand);
+            helper.ConsoleCommands.Add("set_level", $"set_level [SkillID] [Level] [PlayerName]\ne.g. set_level 0 4\n  set LocalPlayer's Farming Level to 4\n{HelpText}", LevelCommand);
         }
 
         private void GameLoop_OneSecondUpdateTicked(object? sender, StardewModdingAPI.Events.OneSecondUpdateTickedEventArgs e)
@@ -27,6 +27,7 @@ namespace SyncMultiLevel
             var farmers = Game1.getOnlineFarmers();
             foreach (var farmer in farmers)
             {
+                if(farmer.Name == "") continue;
                 var farmerPoints = farmer.experiencePoints;
                 for (int i = 0; i < experiencePoints.Length; i++)
                 {
@@ -34,12 +35,12 @@ namespace SyncMultiLevel
                     if (difference < 0)
                     {
                         experiencePoints[i] = farmer.experiencePoints[i];
-                        this.Monitor.Log($"update Skill {SkillName(i)} exp to {experiencePoints[i]}", LogLevel.Debug);
+                        //this.Monitor.Log($"update Skill {SkillName(i)} exp to {experiencePoints[i]}", LogLevel.Debug);
                     }
                     else if (difference > 0)
                     {
                         farmer.gainExperience(i, difference);
-                        this.Monitor.Log($"gain Player {farmer.Name} Skill {SkillName(i)} exp to {experiencePoints[i]}", LogLevel.Debug);
+                        //this.Monitor.Log($"gain Player {farmer.Name} Skill {SkillName(i)} exp to {experiencePoints[i]}", LogLevel.Debug);
                     }
                 }
             }

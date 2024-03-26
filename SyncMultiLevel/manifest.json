@@ -2,7 +2,7 @@
   "Name": "SyncMultiLevel",
   "Author": "thriic",
   "Version": "1.0.0",
-  "Description": "test",
+  "Description": "always keep multiple players at the same skill level",
   "UniqueID": "thriic.SyncMultiLevel",
   "EntryDll": "SyncMultiLevel.dll",
   "MinimumApiVersion": "4.0.0",
